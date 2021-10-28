@@ -11,6 +11,9 @@ namespace LinkGroupDemo.Features
     {
 
         private IWebDriver driver;
+
+        IWebElement fundsDropdown => driver.FindElement(By.XPath("//li[@id='navItem-funds']"));
+
         [Given(@"I have opened the Found Solutions page")]
         public void GivenIHaveOpenedTheFoundSolutionsPage()
         {
@@ -20,12 +23,11 @@ namespace LinkGroupDemo.Features
             driver.Navigate().GoToUrl("https://www.linkfundsolutions.co.uk/");
             driver.Manage().Window.Maximize();
         }
-        
+
         [When(@"I view Funds")]
         public void WhenIViewFunds()
         {
-            driver.FindElement(By.XPath("//li[@id='navItem-funds']")).Click();
-            
+            fundsDropdown.Click();
             Console.WriteLine("Funds dropdown menu is clicked");
         }
 
@@ -33,24 +35,28 @@ namespace LinkGroupDemo.Features
         public void ThenICanSelectTheInvestmentManagersForInvestors(string invest)
 
         {
-
             System.Threading.Thread.Sleep(1000);
             {
-                IWebElement element = driver.FindElement(By.XPath("//*[contains(text(),'"+invest+"')]"));
-                if(element.Displayed)
+
+               IWebElement element = driver.FindElement(By.XPath("//*[contains(text(),'" + invest + "')]"));
+              Assert.IsTrue(element.Text.Contains(invest));
+                element.Click();
+              /*if (element.Displayed)
                 {
-                    Assert.IsTrue(true);
+                    Assert.That(true, element.Text, invest);
                 }
                 else
                 {
-                    Assert.IsTrue(false);
-                }
-                //Closing  broswer
-                driver.Close();
-
+                    Assert.That(false, element.Text, invest);
+                }*/
             }
+
+            //Closing  broswer
+            driver.Quit();
             Console.WriteLine("test case ended ");
+
         }
+
 
     }
 }
