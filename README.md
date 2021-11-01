@@ -1,5 +1,5 @@
 # LinkGroupDemo
-@Author Murugesan
+@Name Murugesan
        ID: M1030359
 Software Requirements:
   Visual Studio Enterprise 2019
