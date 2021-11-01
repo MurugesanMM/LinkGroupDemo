@@ -15,6 +15,9 @@ Software Requirements:
     LinkGroupSteps.cs
     LinkFundSolutionsSteps.cs
     
-    
+  Page Objects :
+   LingGroup.cs
+   FundSolution.cs
+  
   
                  
